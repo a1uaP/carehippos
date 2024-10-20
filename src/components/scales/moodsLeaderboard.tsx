@@ -103,6 +103,56 @@ export default function MoodsLeaderboard() {
       functionName: "totalSupply",
     });
 
+  const { data: communityHappyHct, isSuccess: communityHappyIsSuccess } =
+    useReadContract({
+      abi: MoodCareHippoTokenAbi,
+      address: moods[0].contractAddress,
+      functionName: "communityTokens",
+      args: [community],
+    });
+
+  const { data: communitySadHct, isSuccess: communitySadIsSuccess } =
+    useReadContract({
+      abi: MoodCareHippoTokenAbi,
+      address: moods[1].contractAddress,
+      functionName: "communityTokens",
+      args: [community],
+    });
+
+  const { data: communityNervousHct, isSuccess: communityNervousIsSuccess } =
+    useReadContract({
+      abi: MoodCareHippoTokenAbi,
+      address: moods[2].contractAddress,
+      functionName: "communityTokens",
+      args: [community],
+    });
+
+  const { data: communityAngryHct, isSuccess: communityAngryIsSuccess } =
+    useReadContract({
+      abi: MoodCareHippoTokenAbi,
+      address: moods[3].contractAddress,
+      functionName: "communityTokens",
+      args: [community],
+    });
+
+  const { data: communityTiredHct, isSuccess: communityTiredIsSuccess } =
+    useReadContract({
+      abi: MoodCareHippoTokenAbi,
+      address: moods[4].contractAddress,
+      functionName: "communityTokens",
+      args: [community],
+    });
+
+  const {
+    data: communityFrustratedHct,
+    isSuccess: communityFrustratedIsSuccess,
+  } = useReadContract({
+    abi: MoodCareHippoTokenAbi,
+    address: moods[5].contractAddress,
+    functionName: "communityTokens",
+    args: [community],
+  });
+
   function displayHctBalance(index: number) {
     if (index === 0) {
       return happyIsSuccess ? formatEther(happyHctSupply as bigint) : "0";
@@ -126,12 +176,49 @@ export default function MoodsLeaderboard() {
     }
   }
 
+  function displayCommunityBalance(index: number) {
+    console.log(communityHappyHct);
+    if (index === 0) {
+      return communityHappyIsSuccess
+        ? formatEther(communityHappyHct as bigint)
+        : "0";
+    }
+    if (index === 1) {
+      return communitySadIsSuccess
+        ? formatEther(communitySadHct as bigint)
+        : "0";
+    }
+    if (index === 2) {
+      return communityNervousIsSuccess
+        ? formatEther(communityNervousHct as bigint)
+        : "0";
+    }
+    if (index === 3) {
+      return communityAngryIsSuccess
+        ? formatEther(communityAngryHct as bigint)
+        : "0";
+    }
+    if (index === 4) {
+      return communityTiredIsSuccess
+        ? formatEther(communityTiredHct as bigint)
+        : "0";
+    }
+    if (index === 5) {
+      return communityFrustratedIsSuccess
+        ? formatEther(communityFrustratedHct as bigint)
+        : "0";
+    }
+  }
+
+  console.log(community);
+  console.log(communityHappyHct);
+
   return (
     <div className="w-full md:max-w-sm lg:max-w-md mx-auto p-6 space-y-8">
       <div className="w-full">
         <Select onValueChange={setCommunity}>
           <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select" />
+            <SelectValue placeholder="All commmunities" />
           </SelectTrigger>
           <SelectContent>
             {sponsors.map((sponsor, index) => (
@@ -153,7 +240,11 @@ export default function MoodsLeaderboard() {
               variant="outline"
               className="h-28 text-2xl flex flex-col items-center justify-center"
             >
-              <span className="text-3xl mb-1">{displayHctBalance(index)}</span>
+              <span className="text-3xl mb-1">
+                {community === ""
+                  ? displayHctBalance(index)
+                  : displayCommunityBalance(index)}
+              </span>
               <span className="text-3xl mb-1">{item.emoji}</span>
               <span className="text-xs">{item.label}</span>
             </Button>

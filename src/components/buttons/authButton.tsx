@@ -38,7 +38,7 @@ export default function AuthButton({
       size={size}
       className="font-medium"
     >
-      {isLoggedIn ? "Salir" : "Entrar"}
+      {isLoggedIn ? "Logout" : "Login"}
     </Button>
   );
 }

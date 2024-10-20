@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
 const moods = [
   {
@@ -69,6 +70,7 @@ const sponsors = [
 ];
 
 export default function MoodScale() {
+  const { user } = useDynamicContext();
   const [feeling, setFeeling] = useState<number>(5);
   const [moodIndex, setMoodIndex] = useState<number>(-1);
   const [community, setCommunity] = useState("");
@@ -86,6 +88,9 @@ export default function MoodScale() {
     });
 
   async function handleRegisterMood() {
+    if (!user?.userId) {
+      return toast.warning("Please log in to play");
+    }
     try {
       await writeContractAsync({
         abi: MoodCareHippoTokenAbi,
@@ -162,7 +167,11 @@ export default function MoodScale() {
           <Button
             size="lg"
             className="font-lg font-semibold"
-            disabled={!community || (hash && txReceiptStatus === "pending")}
+            disabled={
+              !community ||
+              moodIndex === -1 ||
+              (hash && txReceiptStatus === "pending")
+            }
             onClick={handleRegisterMood}
           >
             Submit Mood

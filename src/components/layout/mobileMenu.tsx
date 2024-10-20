@@ -45,7 +45,7 @@ export default function MobileMenu({ menuItems, pathname }: MobileMenuProps) {
             </Link>
           ))}
           <div className="flex justify-center py-2">
-            <AuthButton />
+            <AuthButton size="lg" />
           </div>
         </div>
       </SheetContent>
