@@ -7,15 +7,14 @@ import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { createConfig, WagmiProvider } from "wagmi";
 import { http } from "viem";
-import { holesky, morphHolesky } from "viem/chains";
+import { morphHolesky } from "viem/chains";
 
-const alchemyApiKey = process.env.NEXT_PUBLIC_ALCHEMY_API ?? undefined;
+// const alchemyApiKey = process.env.NEXT_PUBLIC_ALCHEMY_API ?? undefined;
 
 const config = createConfig({
-  chains: [holesky, morphHolesky],
+  chains: [morphHolesky],
   multiInjectedProviderDiscovery: false,
   transports: {
-    [holesky.id]: http(`https://eth-holesky.g.alchemy.com/v2/${alchemyApiKey}`),
     [morphHolesky.id]: http(`https://rpc-quicknode-holesky.morphl2.io`),
   },
 });
