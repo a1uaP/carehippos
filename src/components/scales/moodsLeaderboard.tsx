@@ -48,7 +48,7 @@ const moods = [
     emoji: "😤",
     label: "Frustrated",
     contractAddress: process.env
-      .NEXT_PUBLIC_FRUSTR_CHT_MORPH_HOLESKY_ADDRESS as Address,
+      .NEXT_PUBLIC_FRUST_CHT_MORPH_HOLESKY_ADDRESS as Address,
   },
 ];
 
