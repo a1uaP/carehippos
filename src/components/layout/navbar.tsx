@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MobileMenu from "./mobileMenu";
 import { usePathname } from "next/navigation";
-import { Button } from "../ui/button";
+import AuthButton from "../buttons/authButton";
 
 export type MenuItemType = {
   displayText: string;
@@ -66,7 +66,7 @@ export default function Navbar() {
           </nav>
         </div>
         <div className="hidden lg:flex lg:justify-end">
-          <Button>Play</Button>
+          <AuthButton />
         </div>
         <MobileMenu menuItems={MENU_ITEMS} pathname={pathname} />
       </div>

@@ -3,6 +3,7 @@ import { Inter as FontSans } from "next/font/google";
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
+import OnchainProvider from "@/providers/onchainProvider";
 
 export const metadata: Metadata = {
   title: "CareHippos",
@@ -28,7 +29,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        {children}
+        <OnchainProvider>{children}</OnchainProvider>
         <Toaster richColors />
       </body>
     </html>

@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sheet";
 import { MenuIcon } from "lucide-react";
 import { MenuItemType } from "./navbar";
-import { Button } from "../ui/button";
+import AuthButton from "../buttons/authButton";
 
 type MobileMenuProps = {
   menuItems?: MenuItemType[];
@@ -45,7 +45,7 @@ export default function MobileMenu({ menuItems, pathname }: MobileMenuProps) {
             </Link>
           ))}
           <div className="flex justify-center py-2">
-            <Button>Play</Button>
+            <AuthButton />
           </div>
         </div>
       </SheetContent>
