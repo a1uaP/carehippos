@@ -3,11 +3,7 @@
 import { useEffect, useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
-import {
-  useAccount,
-  useWaitForTransactionReceipt,
-  useWriteContract,
-} from "wagmi";
+import { useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import { Address } from "viem";
 import MoodCareHippoTokenAbi from "@/lib/MoodCareHippoToken";
 import { toast } from "sonner";
